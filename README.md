@@ -46,3 +46,5 @@ The dataset includes the following files:
 - 'CodeBook.md': Provides a table of the 68 variable names in the final dataset along with variable type and description of variable contents
 
 - 'run_analysis.R': R script to create the final dataset as a modification of the original datasets
+
+-'tidy_data.txt': Text file containing final, modified dataset.  File can be read through Excel using Delimited - Spaces option
