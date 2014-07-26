@@ -1,4 +1,5 @@
-
+CodeBook for Run_analysis.R 
+============================
 |Column|  Variable Name |Variable Type  |Variable Contents |
 |------|:---------------|:-------------:|:-----------------|  
 |1|Subject|int|Subject number from 1 - 30|
