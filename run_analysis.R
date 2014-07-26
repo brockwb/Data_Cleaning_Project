@@ -20,20 +20,20 @@ colnames(Data2a) <- "Subject"
 colnames(Data2b) <- "Activity"
 
 ## Combine Subject and Activity Variables with Test and Training datasets
-Data1_all <- cbind(Data1a,Data1b,Data1) 
-Data2_all <- cbind(Data2a,Data2b,Data2) 
+Data1_all <- cbind(Data1a,Data1b,Data1) ## Combine Subject and Activity with Test dataset
+Data2_all <- cbind(Data2a,Data2b,Data2) ## Combine Subject and Activity with Train dataset
 
-## Combine (Merge) Test and Training datasets
+## Combine Test and Training datasets
 Combined_data <- rbind(Data1_all,Data2_all) 
 
 
-## Extract Subject, Activity, and Measurements for Means and Std Dev
+## Subset Combined Dataset to contain only (Subject, Activity, Means and Std Dev) variables
 extract_data <- Combined_data[,c(1:8,43:48,83:88,123:128,
                                  163:168,203,204,216,217,229,230,242,243,
                                  255,256,268,269,270:273,347:352,426:431,
                                  505,506,518,519,531,532,544,545)] 
 
-## Assign Descriptive Activity Names to Each Activity
+## Assign Descriptive Activity Names to Each Activity within Activity variable
 extract_data$Activity[which(extract_data$Activity == 1)] <- "Walking"
 extract_data$Activity[which(extract_data$Activity == 2)] <- "Walking Upstairs"
 extract_data$Activity[which(extract_data$Activity == 3)] <- "Walking Downstairs"
@@ -41,7 +41,7 @@ extract_data$Activity[which(extract_data$Activity == 4)] <- "Sitting"
 extract_data$Activity[which(extract_data$Activity == 5)] <- "Standing"
 extract_data$Activity[which(extract_data$Activity == 6)] <- "Laying"
 
-## Label extract_data Variables with Descriptive Variable Names
+## Re-label extract_data Variables with Descriptive Variable Names
 
 names(extract_data) <- gsub("Mag","Magnitude",names(extract_data))
 names(extract_data) <- gsub("Acc","Accelerometer",names(extract_data))
@@ -59,13 +59,18 @@ names(extract_data) <- gsub("^t","Time",names(extract_data))
 names(extract_data) <- gsub("BodyBody","Body",names(extract_data))
 
 ## Create final, tidy dataset (tidy_data) containing average measurements for
-## each subject/activity combination, reassign Subject and Activity variable
-## names, and arrange data by Subject / Activity
+## each Mean and Standard Deviation variable based on
+## each subject/activity combination
 
 tidy_data <- aggregate(extract_data[,3:68],
                        by = list(extract_data$Subject, extract_data$Activity),
                        FUN = "mean")
-names(tidy_data) <- sub("Group\\.1","Subject",names(tidy_data))
-names(tidy_data) <- sub("Group\\.2","Activity",names(tidy_data))
 
-tidy_data <- arrange(tidy_data,tidy_data$Subject,tidy_data$Activity)
+
+names(tidy_data) <- sub("Group\\.1","Subject",names(tidy_data)) ## Reassign Subject variable name
+names(tidy_data) <- sub("Group\\.2","Activity",names(tidy_data)) ## Reassign Activity variable name
+
+tidy_data <- arrange(tidy_data,tidy_data$Subject,tidy_data$Activity) ## Arrange tidy_data by Subject / Activity
+
+
+
