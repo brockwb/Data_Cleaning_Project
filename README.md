@@ -24,9 +24,9 @@ A extracted, modified description of the original dataset is provided below:
 
 Creation of modified dataset:
 ==================================
-This modified dataset consists of measurements for 30 subjects while engaged in 6 different activities (see CodeBook for activity descriptions).  The dataset is obtained by executing the R script "run_analysis.R" which merges two datasets ("test" and "train") from the original study, provides descriptive names for both the activities as well as numerous Accelerometer and Gyroscope measurements obtained by the original researchers.
+This modified dataset consists of measurements for 30 subjects while engaged in 6 different activities (see CodeBook for activity descriptions).  The dataset is obtained by executing the R script "run_analysis.R" which merges two datasets ("test" and "train") from the original study, provides descriptive names for both the activities as well as numerous Time and Frequency measurements captured through Accelerometer and Gyroscope tools by the original researchers.
 
-For clarity, variables were renamed with abbreviations converted to full words (e.g. std dev = standard deviation, and mag = magnitude) using CamelCase due to the longer length of variable names
+For clarity, variables were renamed with abbreviations converted to full words (e.g. t = time, f = frequency, std dev = standard deviation) using CamelCase due to the longer length of variable names
 
 **Note:  Before running the R Script run_analysis.R the user must ensure:**
 
